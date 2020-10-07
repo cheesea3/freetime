@@ -9,13 +9,18 @@ class LoginModel
         $this->db = $pdo;
     }
 
+    public function database(){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $stmt = $this->db->prepare("INSERT INTO Users (username, password) VALUES ('$username', '$password')");
+        $stmt->execute();
+    }
 
-    public function getLogin() {
+    public function addUser() {
         if (isset($_POST['submit'])) {
-        return $this->db->query('SELECT * FROM table');
+           $this->database();
         }
-        else{
-            echo "something is wrong";
-        }
+
+
     }
 }
